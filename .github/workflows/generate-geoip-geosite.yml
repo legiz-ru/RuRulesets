@@ -111,7 +111,7 @@ jobs:
           cat << EOF > discord-ips-list.json
           [
           {
-            "url": "https://gitlab.com/GhostRooter0953/discord-voice-ips/-/raw/main/discord-ips-list.txt",
+            "url": "https://raw.githubusercontent.com/legiz-ru/discord-voice-ips/refs/heads/main/discord-ips-list.lst",
             "contentType": "DefaultList",
             "category": "discord-ips-list"
           }
