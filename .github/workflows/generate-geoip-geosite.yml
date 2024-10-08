@@ -108,6 +108,15 @@ jobs:
           }
           ]
           EOF
+          cat << EOF > discord-ips-list.json
+          [
+          {
+            "url": "https://gitlab.com/GhostRooter0953/discord-voice-ips/-/raw/main/discord-ips-list.txt",
+            "contentType": "DefaultList",
+            "category": "discord-ips-list"
+          }
+          ]
+          EOF
         
       - name: Генерация AdAway списков
         run: |
@@ -125,7 +134,10 @@ jobs:
       - name: Генерация OISD списков
         run: |
           ./generate-geoip-geosite -s oisd.json -i ./oisd -o ./oisd --gen-rule-set-srs
-      
+      - name: Генерация Discord voice списков
+        run: |
+          ./generate-geoip-geosite -s discord-ips-list.json -i ./discord-ips-list -o ./discord-ips-list --gen-rule-set-srs
+        
       - name: Copy .srs files to repository directory
         run: |
           rm -f /home/runner/work/RuRulesets/RuRulesets/*.srs
@@ -136,6 +148,7 @@ jobs:
           mv ./antifilter/*.srs /home/runner/work/RuRulesets/RuRulesets
           mv ./antizapret/*.srs /home/runner/work/RuRulesets/RuRulesets
           mv ./oisd/*.srs /home/runner/work/RuRulesets/RuRulesets
+          mv ./discord-ips-list/*.srs /home/runner/work/RuRulesets/RuRulesets
           
       - name: Get current date
         id: date
